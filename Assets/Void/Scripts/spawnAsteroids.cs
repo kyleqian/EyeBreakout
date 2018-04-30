@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class spawnAsteroids : MonoBehaviour 
@@ -14,6 +12,7 @@ public class spawnAsteroids : MonoBehaviour
 	public GameObject asteroidPrefab;
 	public GameObject deathParticles;
 	public GameObject planetPrefab;
+    public GameObject ringPrefab;
 
 	public static spawnAsteroids instance = null;
 
@@ -33,19 +32,24 @@ public class spawnAsteroids : MonoBehaviour
 	{
 		clonePlanet = Instantiate (planetPrefab, transform.position, Quaternion.identity) as GameObject;
 
-		float radius = 9f;
+        GameObject innerRing = Instantiate(ringPrefab, transform.position, Quaternion.identity);
+        innerRing.name = "Inner Ring";
+        GameObject outerRing = Instantiate(ringPrefab, transform.position, Quaternion.identity);
+        outerRing.name = "Outer Ring";
+
+        float radius = 9f;
 		for (int i = 0; i < 20; i++)
 		{
 			float angle = i * Mathf.PI*2f / 20;
 			Vector3 newPos = new Vector3(Mathf.Cos(angle)*radius, Mathf.Sin(angle)*radius, 0);
-			Instantiate(asteroidPrefab, newPos, Quaternion.identity);
+			Instantiate(asteroidPrefab, newPos, Quaternion.identity, outerRing.transform);
 		}
 		radius = 6.5f;
 		for (int i = 0; i < 12; i++)
 		{
 			float angle = i * Mathf.PI*2f / 12;
 			Vector3 newPos = new Vector3(Mathf.Cos(angle)*radius, Mathf.Sin(angle)*radius, 0);
-			Instantiate(asteroidPrefab, newPos, Quaternion.identity);
+			Instantiate(asteroidPrefab, newPos, Quaternion.identity, innerRing.transform);
 		}
 	}
 

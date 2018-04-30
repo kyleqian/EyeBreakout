@@ -17,7 +17,7 @@ public class GravityBall : MonoBehaviour
         {
             float distance = Vector3.Distance(BlackHole.Instance.transform.position, transform.position);
             Vector3 direction = BlackHole.Instance.transform.position - transform.position;
-            rb.AddForce(Vector3.Normalize(direction) * forceMultiplier / distance);
+            rb.AddForce(Vector3.Normalize(direction) * forceMultiplier / (distance / 2));
         }
     }
 }

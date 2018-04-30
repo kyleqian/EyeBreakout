@@ -33,9 +33,11 @@ public class GazePlotter : MonoBehaviour
 
 	// Members used for gaze bubble (filtered gaze visualization):
 	private SpriteRenderer _gazeBubbleRenderer;      // the gaze bubble sprite is attached to the GazePlotter game object itself
-	private bool _useFilter = false;
+	private bool _useFilter = true;
 	private bool _hasHistoricPoint;
 	private Vector3 _historicPoint;
+
+    public static Vector3 publicGazePoint;
 
 	public bool UseFilter
 	{
@@ -129,8 +131,12 @@ public class GazePlotter : MonoBehaviour
 
 	private void UpdateGazeBubblePosition(GazePoint gazePoint)
 	{
-		Vector3 gazePointInWorld = ProjectToPlaneInWorld(gazePoint);
-		transform.position = Smoothify(gazePointInWorld);
+        //Vector3 gazePointInWorld = ProjectToPlaneInWorld(gazePoint);
+        //      transform.position = Smoothify(gazePointInWorld);
+
+
+        Vector3 gazePointInWorld = gazePoint.Screen;
+        publicGazePoint = Smoothify(Camera.main.ScreenToWorldPoint(new Vector3(gazePointInWorld.x, gazePointInWorld.y, 22f)));
 	}
 
 	private void UpdateGazePointCloud(GazePoint gazePoint)
@@ -167,10 +173,11 @@ public class GazePlotter : MonoBehaviour
 			_hasHistoricPoint = true;
 		}
 
-		var smoothedPoint = new Vector3(
-			point.x * (1.0f - FilterSmoothingFactor) + _historicPoint.x * FilterSmoothingFactor,
-			point.y * (1.0f - FilterSmoothingFactor) + _historicPoint.y * FilterSmoothingFactor,
-			point.z * (1.0f - FilterSmoothingFactor) + _historicPoint.z * FilterSmoothingFactor);
+        var smoothedPoint = new Vector3(
+            point.x * (1.0f - FilterSmoothingFactor) + _historicPoint.x * FilterSmoothingFactor,
+            point.y * (1.0f - FilterSmoothingFactor) + _historicPoint.y * FilterSmoothingFactor,
+            point.z);
+			//point.z * (1.0f - FilterSmoothingFactor) + _historicPoint.z * FilterSmoothingFactor);
 
 		_historicPoint = smoothedPoint;
 
