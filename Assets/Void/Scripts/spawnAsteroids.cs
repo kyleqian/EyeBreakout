@@ -91,10 +91,4 @@ public class spawnAsteroids : MonoBehaviour
 		asteroids--;
 		CheckGameOver();
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-	}
 }

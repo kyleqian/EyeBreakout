@@ -30,12 +30,20 @@ public class BlackHole : MonoBehaviour
     {
         //active = Input.GetMouseButton(0);
         active = TobiiAPI.GetUserPresence().IsUserPresent();
-        mr.enabled = active;
+        //mr.enabled = active;
         col.enabled = active;
 
         if (active)
         {
             transform.position = GazePlotter.publicGazePoint;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.name.IndexOf("GravityBall") >= 0)
+        {
+            spawnAsteroids.instance.LoseLife();
         }
     }
 }
