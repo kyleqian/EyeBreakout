@@ -15,7 +15,6 @@ public class BlackHoleEffect : MonoBehaviour
     private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
     {
         Vector2 screenCoordinates = Camera.main.WorldToViewportPoint(blackHole.position);
-        print(screenCoordinates);
         m_Mat.SetVector("_Center", new Vector4(screenCoordinates.x, screenCoordinates.y, 0f, 0f));
         m_Mat.SetFloat("_DarkRange", m_DarkRange);
         m_Mat.SetFloat("_Distortion", m_Distortion);
