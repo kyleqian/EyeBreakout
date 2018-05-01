@@ -19,5 +19,7 @@ public class GravityBall : MonoBehaviour
             Vector3 direction = BlackHole.Instance.transform.position - transform.position;
             rb.AddForce(Vector3.Normalize(direction) * forceMultiplier / (distance / 2));
         }
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 }
