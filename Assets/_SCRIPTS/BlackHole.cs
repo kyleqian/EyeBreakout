@@ -10,6 +10,9 @@ public class BlackHole : MonoBehaviour
     private Collider col;
     private float depth;
 
+    public AudioClip[] death;
+    public AudioSource deathSource;
+
     private void Awake()
     {
         if (Instance == null)
@@ -44,6 +47,13 @@ public class BlackHole : MonoBehaviour
         if (collision.collider.name.IndexOf("GravityBall") >= 0)
         {
             spawnAsteroids.instance.LoseLife();
+            playDeathAudio();
         }
+    }
+
+    void playDeathAudio()
+    {
+        deathSource.clip = death[0];
+        deathSource.Play();
     }
 }

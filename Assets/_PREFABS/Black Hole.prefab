@@ -96,6 +96,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  death:
+  - {fileID: 8300000, guid: 747828089f8c81f4e83b97e7531d71bd, type: 3}
+  deathSource: {fileID: 82926718540573494, guid: 4904e596c7866d648bacb9a1f5fab477,
+    type: 2}
 --- !u!135 &135641377376965312
 SphereCollider:
   m_ObjectHideFlags: 1

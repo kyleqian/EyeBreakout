@@ -97,6 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brickParticle: {fileID: 1680725373924468, guid: 8f893e98037674b1d88853e0c3ff8717,
     type: 2}
+  bounce:
+  - {fileID: 8300000, guid: e12d7d89e4b7a2f4e88940ffbaa8e4b9, type: 3}
+  bounceSource: {fileID: 82951357027273490, guid: 5d3ae526862d6f040a8a409f4b77eed5,
+    type: 2}
 --- !u!135 &135934997159333780
 SphereCollider:
   m_ObjectHideFlags: 1
