@@ -9,7 +9,7 @@ public class spawnAsteroids : MonoBehaviour
 	public float resetDelay = 1f;
 	public GameObject gameOver;
 	public GameObject youWon;
-	public GameObject asteroidPrefab;
+	public GameObject[] asteroidPrefabs;
 	public GameObject deathParticles;
 	public GameObject planetPrefab;
     public GameObject ringPrefab;
@@ -37,19 +37,19 @@ public class spawnAsteroids : MonoBehaviour
         GameObject outerRing = Instantiate(ringPrefab, transform.position, Quaternion.identity);
         outerRing.name = "Outer Ring";
 
-        float radius = 9f;
+        float radius = 10f;
 		for (int i = 0; i < 20; i++)
 		{
 			float angle = i * Mathf.PI*2f / 20;
 			Vector3 newPos = new Vector3(Mathf.Cos(angle)*radius, Mathf.Sin(angle)*radius, 0);
-			Instantiate(asteroidPrefab, newPos, Quaternion.identity, outerRing.transform);
+			Instantiate(asteroidPrefabs[Random.Range(0, 2)], newPos, Quaternion.identity, outerRing.transform);
 		}
 		radius = 6.5f;
 		for (int i = 0; i < 12; i++)
 		{
 			float angle = i * Mathf.PI*2f / 12;
 			Vector3 newPos = new Vector3(Mathf.Cos(angle)*radius, Mathf.Sin(angle)*radius, 0);
-			Instantiate(asteroidPrefab, newPos, Quaternion.identity, innerRing.transform);
+			Instantiate(asteroidPrefabs[Random.Range(0, 2)], newPos, Quaternion.identity, innerRing.transform);
 		}
 	}
 

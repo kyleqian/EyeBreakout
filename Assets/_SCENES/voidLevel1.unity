@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 664b9c81b4a72524fb33f091d2e338af, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.051989824, g: 0.1646244, b: 0.14260972, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -390,8 +390,10 @@ MonoBehaviour:
   resetDelay: 1
   gameOver: {fileID: 427488254}
   youWon: {fileID: 178644423}
-  asteroidPrefab: {fileID: 1170392726006442, guid: 040dd8e396c974ac88527935b7d4a335,
-    type: 2}
+  asteroidPrefabs:
+  - {fileID: 151664, guid: fa49e460baf435b4780da7196c2ab473, type: 2}
+  - {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 2}
+  - {fileID: 130102, guid: 04d0bf4be9447154188d86f6e3b8dce9, type: 2}
   deathParticles: {fileID: 1680725373924468, guid: 1a9b2606f5c5d4dccb4e6ff236caa12e,
     type: 2}
   planetPrefab: {fileID: 1566933773595602, guid: a413accd95c11a24bb9b963532040cc6,
@@ -522,6 +524,10 @@ Prefab:
     - target: {fileID: 4678366893086926, guid: cee0d8a841d6255468b19de3433cc1a7, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878620103218086, guid: cee0d8a841d6255468b19de3433cc1a7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cee0d8a841d6255468b19de3433cc1a7, type: 2}
@@ -836,7 +842,7 @@ Camera:
   m_GameObject: {fileID: 1828243889}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
