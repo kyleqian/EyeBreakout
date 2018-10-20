@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Black Hole
   m_Shader: {fileID: 4800000, guid: e1f5387f07fd10d4bbe363d87fe46b0d, type: 3}
@@ -39,7 +39,7 @@ Material:
     - _SimpleAmount7: 0.5
     - _SimpleAmount8: 0.5
     m_Colors:
-    - _Center: {r: 0.5, g: 0.8542831, b: 0, a: 0}
+    - _Center: {r: 0.46513146, g: 1.0745568, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ComplicatedCenter1: {r: 0, g: 0, b: 0, a: 0}
     - _SimpleCenterRadial1: {r: 0.5, g: 0.5, b: 0.1, a: 0.1}
