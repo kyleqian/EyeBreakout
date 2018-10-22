@@ -32,11 +32,11 @@ public class Asteroids : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
 	{
-        if (other.collider.name.IndexOf("GravityBall") >= 0)
+        if (other.collider.name.IndexOf("Destroyer") >= 0)
         {
             playBounceAudio();
             Instantiate(brickParticle, transform.position, Quaternion.identity);
-		    VoidGameManager.Instance.DestroyAsteroid();
+		    VoidGameManager.Instance.DestroyAsteroid(GetInstanceID());
 		    Destroy(gameObject, 0.5f);
         }
 	}

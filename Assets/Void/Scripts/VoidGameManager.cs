@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -19,12 +20,13 @@ public class VoidGameManager : MonoBehaviour
 	public GameObject YouWon;
 	public GameObject[] AsteroidPrefabs;
 	public GameObject DeathParticles;
-	public GameObject PlanetPrefab;
+	public GameObject DestroyerPrefab;
     public GameObject RingPrefab;
 
 	int currNumAsteroids;
     int currNumLives;
-	GameObject planet;
+	GameObject destroyer;
+    HashSet<int> destroyedAsteroidIds = new HashSet<int>();
 
 	void Awake() 
 	{
@@ -50,7 +52,7 @@ public class VoidGameManager : MonoBehaviour
 
 	void SpawnPlanet()
 	{
-        planet = Instantiate(PlanetPrefab, transform.position, Quaternion.identity) as GameObject;
+        destroyer = Instantiate(DestroyerPrefab, transform.position, Quaternion.identity) as GameObject;
 	}
 
     void SpawnAsteroids()
@@ -90,7 +92,8 @@ public class VoidGameManager : MonoBehaviour
 			    GameOver.SetActive(true);
             }
             LivesText.gameObject.SetActive(false);
-			Time.timeScale = 0.25f;
+            LivesText.transform.parent.gameObject.SetActive(false);
+            Time.timeScale = 0.25f;
             Invoke("ResetGame", GameOverResetDelay);
             return true;
 		}
@@ -100,9 +103,9 @@ public class VoidGameManager : MonoBehaviour
 	public void LoseLife()
 	{
 		--currNumLives;
-		LivesText.text = "Lives: " + currNumLives;
-		Instantiate(DeathParticles, planet.transform.position, Quaternion.identity);
-		Destroy(planet);
+        LivesText.text = LivesText.text.Substring(0, LivesText.text.Length - 2);
+		Instantiate(DeathParticles, destroyer.transform.position, Quaternion.identity);
+		Destroy(destroyer);
         if (IsGameOver())
         {
             return;
@@ -116,8 +119,13 @@ public class VoidGameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-	public void DestroyAsteroid()
+	public void DestroyAsteroid(int asteroidId)
 	{
+        if (destroyedAsteroidIds.Contains(asteroidId))
+        {
+            return;
+        }
+        destroyedAsteroidIds.Add(asteroidId);
 		--currNumAsteroids;
         IsGameOver();
 	}

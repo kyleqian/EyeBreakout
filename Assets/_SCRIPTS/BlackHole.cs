@@ -53,7 +53,7 @@ public class BlackHole : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.name.IndexOf("GravityBall") >= 0)
+        if (collision.collider.name.IndexOf("Destroyer") >= 0)
         {
             VoidGameManager.Instance.LoseLife();
             playDeathAudio();
