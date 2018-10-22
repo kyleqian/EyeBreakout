@@ -4,16 +4,17 @@ using UnityEngine;
 public class BlackHole : MonoBehaviour
 {
     public static BlackHole Instance;
+
     public bool active;
-
-    private MeshRenderer mr;
-    private Collider col;
-    private float depth;
-
     public AudioClip[] death;
     public AudioSource deathSource;
 
-    private void Awake()
+    MeshRenderer mr;
+    Collider col;
+    float depth;
+    bool usingEyeTracker;
+
+    void Awake()
     {
         if (Instance == null)
         {
@@ -27,26 +28,34 @@ public class BlackHole : MonoBehaviour
         mr = GetComponent<MeshRenderer>();
         col = GetComponent<Collider>();
         depth = transform.position.z - Camera.main.transform.position.z;
+        usingEyeTracker = TobiiAPI.GetUserPresence().IsUserPresent();
     }
 
-    private void Update()
+    void Update()
     {
-        //active = Input.GetMouseButton(0);
-        active = TobiiAPI.GetUserPresence().IsUserPresent();
-        //mr.enabled = active;
-        col.enabled = active;
-
-        if (active)
+        if (usingEyeTracker)
         {
-            transform.position = GazePlotter.publicGazePoint;
+            active = TobiiAPI.GetUserPresence().IsUserPresent();
+            col.enabled = active;
+            if (active)
+            {
+                transform.position = GazePlotter.publicGazePoint;
+            }
+        }
+        else
+        {
+            active = true;
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = 22;
+            transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.name.IndexOf("GravityBall") >= 0)
         {
-            spawnAsteroids.instance.LoseLife();
+            VoidGameManager.Instance.LoseLife();
             playDeathAudio();
         }
     }

@@ -11,7 +11,7 @@ public class Boundary : MonoBehaviour
         if (other.name.IndexOf("GravityBall") >= 0)
         {
             playDeathAudio();
-            spawnAsteroids.instance.LoseLife();
+            VoidGameManager.Instance.LoseLife();
             //playDeathAudio();
         }
     }

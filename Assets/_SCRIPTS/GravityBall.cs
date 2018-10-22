@@ -3,15 +3,14 @@
 public class GravityBall : MonoBehaviour
 {
     public float forceMultiplier;
+    Rigidbody rb;
 
-    private Rigidbody rb;
-
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    void Update()
     {
         if (BlackHole.Instance.active)
         {
