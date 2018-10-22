@@ -5,14 +5,13 @@ public class BlackHole : MonoBehaviour
 {
     public static BlackHole Instance;
 
-    public bool active;
+    public bool active { get; private set; }
     public AudioClip[] death;
     public AudioSource deathSource;
 
     MeshRenderer mr;
     Collider col;
     float depth;
-    bool usingEyeTracker;
 
     void Awake()
     {
@@ -28,12 +27,11 @@ public class BlackHole : MonoBehaviour
         mr = GetComponent<MeshRenderer>();
         col = GetComponent<Collider>();
         depth = transform.position.z - Camera.main.transform.position.z;
-        usingEyeTracker = TobiiAPI.GetUserPresence().IsUserPresent();
     }
 
     void Update()
     {
-        if (usingEyeTracker)
+        if (VoidGameManager.Instance.UseEyeTracker)
         {
             active = TobiiAPI.GetUserPresence().IsUserPresent();
             col.enabled = active;

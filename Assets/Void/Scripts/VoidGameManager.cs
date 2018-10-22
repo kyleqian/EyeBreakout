@@ -7,6 +7,7 @@ public class VoidGameManager : MonoBehaviour
 {
 	public static VoidGameManager Instance;
 
+    public bool UseEyeTracker;
     public int StartingLives;
     public float InnerRingRadius;
     public int InnerRingAsteroidCount;
